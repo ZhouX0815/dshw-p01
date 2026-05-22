@@ -1,0 +1,58 @@
+CSMAR数据处理日志
+生成时间: 2026-05-21
+=================================================
+
+[Step 1] 原始数据读取
+  - 读取资产负债表 2000-2010: 64165 行, 32 列
+  - 读取资产负债表 2011-2024: 81664 行, 32 列
+  - 读取利润表/现金流量表 2000-2010: 64165 行, 36 列
+  - 读取利润表/现金流量表 2011-2024: 81664 行, 36 列
+  - 读取CSMAR常用变量(股权): 61456 行, 33 列
+  - 读取公司基本信息年度表: 64172 行, 40 列
+
+[Step 2] 资产负债表清洗
+  - 合并2000-2010和2011-2024: 145825 行
+  - code统一为6位字符串, year提取为整数
+  - 去重 (code-year, 保留最新): 145825 行
+
+[Step 3] 利润表/现金流量表清洗
+  - 合并两段数据: 145825 行
+  - 去重后: 145825 行
+
+[Step 4] 股权结构数据清洗
+  - Shrcr1(Top1)从百分比转为小数
+  - Shrhfd5(HHI5)已为小数形式
+  - 去重后: 61456 行
+
+[Step 5] 公司基本信息清洗
+  - 提取行业大类代码(首字母)
+  - 公司总数: 5614 家
+
+[Step 6] 多表合并
+  - 资产负债表 + 利润表: 145825 行
+  - + 股权结构: 145825 行
+  - + 公司基本信息: 145825 行
+  - 删除total_assets<=0: 71787 行
+
+[Step 7] 指标变量构造
+  - Lev, SL, LL, SDR, Cash, ROA, ROE, SLoan, LLoan, Size, Age, Top1, HHI5
+
+[Step 8] 缩尾处理 (按年度1%-99%)
+  - 对 Lev, SL, LL, SDR, Cash, ROA, ROE, SLoan, LLoan, HHI5 进行缩尾
+  - 同时保留 _raw 原始变量
+
+[Step 9] 输出文件
+  - data/clean/firm_year_clean.csv: 145825 行
+  - data/combined/csmar_firm_year_panel.csv: 71787 行
+  - data/combined/csmar_firm_year_panel.parquet: 71787 行
+  - output/tables/missing_summary.csv
+  - output/tables/winsor_summary.csv
+  - output/tables/yearly_summary.csv/.xlsx
+  - output/tables/industry_selected_years_summary.csv/.xlsx
+  - output/figures/fig01_lev_mean_median.png
+  - output/figures/fig02_roa_cash_mean.png
+  - output/figures/fig03_industry_lev_equal_weight.png
+  - output/figures/fig04_industry_lev_asset_weighted.png
+  - output/figures/fig05_top1_boxplot_selected_years.png
+
+[完成] 最终面板数据: 71787 行, 5820 家公司, 2000-2024年

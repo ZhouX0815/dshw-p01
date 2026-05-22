@@ -1,0 +1,28 @@
+﻿source_file,raw_variable,clean_variable,definition,unit,note
+资产负债表-2000-2010/2011-2024,FS_Combas-A001101000,cash,货币资金,元,流动资产中的现金及等价物
+资产负债表-2000-2010/2011-2024,FS_Combas-A001100000,current_assets,流动资产合计,元,
+资产负债表-2000-2010/2011-2024,FS_Combas-A001000000,total_assets,资产总计,元,
+资产负债表-2000-2010/2011-2024,FS_Combas-A002101000,st_loan,短期借款,元,
+资产负债表-2000-2010/2011-2024,FS_Combas-A002125000,current_liab,流动负债合计,元,
+资产负债表-2000-2010/2011-2024,FS_Combas-A002201000,lt_loan,长期借款,元,
+资产负债表-2000-2010/2011-2024,FS_Combas-A002200000,noncurrent_liab,非流动负债合计,元,
+资产负债表-2000-2010/2011-2024,FS_Combas-A002000000,total_liab,负债合计,元,
+资产负债表-2000-2010/2011-2024,FS_Combas-A003000000,equity,所有者权益合计,元,
+利润表-现金流量表-2000-2010/2011-2024,FS_Comins-B001101000,revenue,营业收入,元,
+利润表-现金流量表-2000-2010/2011-2024,FS_Comins-B002000000,net_profit,净利润,元,
+利润表-现金流量表-2000-2010/2011-2024,FS_Comscfd-C001000000,cfo,经营活动产生的现金流量净额,元,
+CSMAR常用变量-2000-2024,Shrcr1,Top1,第一大股东持股比例,小数,原始为百分比，除以100转为小数
+CSMAR常用变量-2000-2024,Shrhfd5,HHI5,前五大股东持股集中度(HHI),小数,各持股比例平方和，原始为小数形式
+上市公司基本信息年度表,IndustryCode,industry_code,行业大类代码（取首字母）,无,证监会行业分类，如C01取C
+上市公司基本信息年度表,LISTINGDATE,list_year,首次上市年份,年,用于计算Age
+计算得出,-,Lev,总负债率,小数,total_liab / total_assets，按年度1%-99%缩尾
+计算得出,-,SL,流动负债率,小数,current_liab / total_assets，按年度1%-99%缩尾
+计算得出,-,LL,长期负债率,小数,noncurrent_liab / total_assets，按年度1%-99%缩尾
+计算得出,-,SDR,短债比率,小数,current_liab / total_liab，按年度1%-99%缩尾
+计算得出,-,Cash,现金比率,小数,cash / total_assets，按年度1%-99%缩尾
+计算得出,-,ROA,总资产收益率,小数,net_profit / total_assets，按年度1%-99%缩尾
+计算得出,-,ROE,净资产收益率,小数,net_profit / equity，按年度1%-99%缩尾
+计算得出,-,SLoan,短期银行借款率,小数,st_loan / total_assets，按年度1%-99%缩尾
+计算得出,-,LLoan,长期银行借款率,小数,lt_loan / total_assets，按年度1%-99%缩尾
+计算得出,-,Size,公司规模（总资产对数）,无量纲,ln(total_assets)，不缩尾
+计算得出,-,Age,上市年限,年,year - list_year + 1，不缩尾
